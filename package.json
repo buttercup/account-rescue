@@ -25,6 +25,7 @@
   "homepage": "https://github.com/buttercup/account-rescue#readme",
   "dependencies": {
     "iocane": "^1.0.1",
+    "pug": "^2.0.3",
     "secure-random-string": "^1.1.0"
   }
 }

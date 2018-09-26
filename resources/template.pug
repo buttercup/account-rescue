@@ -1,0 +1,101 @@
+doctype html
+html(lang="en")
+    head
+        title Account Rescue Information
+        link(href="https://fonts.googleapis.com/css?family=PT+Mono|Work+Sans" rel="stylesheet")
+        style(type="text/css").
+            html, body {
+                background-color: white;
+            }
+            body {
+                text-align: center;
+                font-family: "Work Sans", sans-serif;
+            }
+            #root {
+                width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #header {
+                width: 100%;
+                padding: 10px;
+                overflow: hidden;
+                background-color: #f46242;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #titleContainer {
+                width: 100%;
+                padding: 6px;
+                background-color: white;
+                overflow: hidden;
+                border-radius: 6px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #title {
+                margin: 0;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            #title strong {
+                text-shadow: 1px 0px 0px black;
+            }
+            #info {
+                width: 80%;
+                margin: 0 auto;
+            }
+            .important {
+                text-decoration: underline;
+            }
+            table.details {
+                width: 80%;
+                margin: 0 auto;
+                border: 2px solid #000;
+                border-radius: 4px;
+                border-collapse: collapse;
+            }
+            table.details td {
+                text-align: left;
+                border: 1px solid #111;
+                padding: 5px 2px;
+            }
+            td.heading {
+                width: 140px;
+                background-color: #111;
+                color: #fff;
+                font-weight: bold;
+            }
+            td.mono {
+                font-family: "PT Mono", monospace;
+                word-break: break-all;
+            }
+    body
+        #root
+            #header
+                #titleContainer
+                    h1#title
+                        strong #{system}
+                        | &nbsp;Rescue Info
+            #info
+                p This document contains a
+                    i &nbsp;rescue kit&nbsp;
+                    | which will allow you to restore your inaccessible account. The information contained within this document is
+                    strong &nbsp;extremely sensitive&nbsp;
+                    | and should be stored in a safe place.
+                p Treat this document like your account password - do not share it with anyone and make sure that it's stored somewhere that only you control. It is recommended that you print it and&nbsp;
+                    span.important destroy the digital copy.
+            table.details
+                tbody
+                    tr
+                        td.heading Account
+                        td.mono #{accountIdentifier}
+                    tr
+                        td.heading Rescue Data
+                        td.mono #{payload}
+                    tr
+                        td.heading Passcode
+                        td.mono #{password}
