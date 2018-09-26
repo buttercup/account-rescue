@@ -73,6 +73,11 @@ html(lang="en")
                 font-family: "PT Mono", monospace;
                 word-break: break-all;
             }
+            img.qrcode {
+                width: 260px;
+                margin: 0 auto;
+                height: auto;
+            }
     body
         #root
             #header
@@ -99,3 +104,5 @@ html(lang="en")
                     tr
                         td.heading Passcode
                         td.mono #{password}
+            p You can also use the following QR-code to start the rescue process from supported applications:
+            img.qrcode(src=qrImageCode)

@@ -4,7 +4,7 @@ const pug = require("pug");
 
 const TEMPLATE = path.resolve(__dirname, "../resources/template.pug");
 
-function generateHTMLDocument({ accountIdentifier, password, payload, system } = {}) {
+function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCode, system } = {}) {
     return readTemplate()
         .then(pugCode => {
             const pugEx = pug.compile(pugCode);
@@ -12,9 +12,11 @@ function generateHTMLDocument({ accountIdentifier, password, payload, system } =
                 accountIdentifier,
                 password,
                 payload,
+                qrImageCode,
                 system
             });
-            fs.writeFileSync(path.resolve(__dirname, "../test.html"), html);
+            // fs.writeFileSync(path.resolve(__dirname, "../test.html"), html);
+            return html;
         });
 }
 
