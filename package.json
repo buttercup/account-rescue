@@ -1,0 +1,30 @@
+{
+  "name": "account-rescue",
+  "version": "0.1.0",
+  "description": "Account reset/rescue framework for NodeJS",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buttercup/account-rescue.git"
+  },
+  "keywords": [
+    "account",
+    "reset",
+    "rescue",
+    "login",
+    "backup"
+  ],
+  "author": "Perry Mitchell <perry@perrymitchell.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buttercup/account-rescue/issues"
+  },
+  "homepage": "https://github.com/buttercup/account-rescue#readme",
+  "dependencies": {
+    "iocane": "^1.0.1",
+    "secure-random-string": "^1.1.0"
+  }
+}
