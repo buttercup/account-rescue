@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/buttercup/account-rescue#readme",
   "dependencies": {
+    "html-pdf": "^2.2.0",
     "iocane": "^1.0.1",
     "pug": "^2.0.3",
     "qrcode": "^1.2.2",

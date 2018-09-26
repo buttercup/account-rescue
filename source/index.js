@@ -1,19 +1,19 @@
 const { generateSecretPayload, splitEncryptedPayload } = require("./secret.js");
-const { generateHTMLDocument } = require("./document.js");
+const { generateHTMLDocument, generatePDFDocument } = require("./document.js");
 const { generateQRCodeForPayload } = require("./qrCode.js");
 
 function renderRescue(
     { accountIdentifier, accountSecret, output = "html" } = {},
     { system = "Example Inc." } = {}
 ) {
-    const output = {
+    const out = {
         remote: null,
         data: null
     };
     return generateSecretPayload(accountSecret)
         .then(({ encryptedPayload, password }) => {
             const { local, remote } = splitEncryptedPayload(encryptedPayload);
-            output.remote = remote;
+            out.remote = remote;
             return generateQRCodeForPayload({
                 id: accountIdentifier,
                 payload: local,
@@ -29,15 +29,23 @@ function renderRescue(
             );
         })
         .then(html => {
-            output.data = html;
+            out.data = html;
+            if (output === "pdf") {
+                return generatePDFDocument(html).then(pdfBuff => {
+                    out.data = pdfBuff;
+                });
+            }
         })
-        .then(() => output);
+        .then(() => out);
 }
 
-renderRescue({
-    accountIdentifier: "id123",
-    accountSecret: "mySecretPassword"
-});
+// renderRescue({
+//     accountIdentifier: "id123",
+//     accountSecret: "mySecretPassword",
+//     output: "pdf"
+// }).then(out => {
+//     require("fs").writeFileSync(require("path").resolve(__dirname, "../test.pdf"), out.data);
+// });
 
 module.exports = {
     renderRescue

@@ -1,7 +1,13 @@
 const path = require("path");
 const fs = require("fs");
 const pug = require("pug");
+const pdf = require("html-pdf");
 
+const PDF_OPTIONS = {
+    format: "A4",
+    orientation: "portrait",
+    renderDelay: 2000
+};
 const TEMPLATE = path.resolve(__dirname, "../resources/template.pug");
 
 function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCode, system } = {}) {
@@ -20,6 +26,17 @@ function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCod
         });
 }
 
+function generatePDFDocument(html) {
+    return new Promise((resolve, reject) => {
+        pdf.create(html).toBuffer((err, buffer) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(buffer);
+        });
+    });
+}
+
 function readTemplate() {
     return new Promise((resolve, reject) => {
         fs.readFile(TEMPLATE, "utf8", (err, data) => {
@@ -32,5 +49,6 @@ function readTemplate() {
 }
 
 module.exports = {
-    generateHTMLDocument
+    generateHTMLDocument,
+    generatePDFDocument
 };
