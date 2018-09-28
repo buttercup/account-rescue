@@ -1,6 +1,8 @@
 # 🚨 Account Rescue
 > Account reset/rescue framework for NodeJS
 
+[![Build Status](https://travis-ci.org/buttercup/account-rescue.svg?branch=master)](https://travis-ci.org/buttercup/account-rescue)
+
 ## About
 Account Rescue is a framework designed to make the process of generating _account rescue information_ easier. Such information should provide the web host and its users with enough control and security to implement a basic account retrieval system in the event that a user loses/forgets their password.
 
