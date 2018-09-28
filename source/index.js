@@ -6,6 +6,14 @@ const { decodeQRCodePayload, generateQRCodeForPayload } = require("./qrCode.js")
  * @module AccountRescue
  */
 
+/**
+ * Regenerate secret value from rescue components
+ * @param {String} remote The remote payload
+ * @param {String} local The local payload, taken from the QR
+ * @param {String} password The local password, taken from the rescue document
+ * @returns {Promise.<String>} A promise that resolves with the original
+ *  secret value
+ */
 function regenerateSecret(remote, local, password) {
     const encryptedPayload = zipEncryptedPayload(remote, local);
     return decryptPayload(encryptedPayload, password);
