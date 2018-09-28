@@ -44,3 +44,14 @@ renderRescue({ accountIdentifier: "user@hotmail.com", accountSecret: "mySecurePa
 ```
 
 You can see an example of the resulting document [here](example.pdf).
+
+### Implementing the rescue protocol
+Creating an account rescue feature is an important process for highly-secure systems, and great care should be taken in ensuring the implementation is sound.
+
+This library creates 2 primary deliverables - A **document** which is to be given to the user, and a **remote secret** designed to be stored server-side. The document contains a passphrase and _part_ of an encrypted payload. The other part of the encrypted payload is the remote secret which is not provided to the user and stored on the server.
+
+When this library is charged to create rescue information, the output should be separated immediately, with the remote secret being stored in a database and the rescue document being given to the user in the form of a download.
+
+### Performing recovery
+In the case that the rescue information needs to be used, the user will provide several data points:
+
