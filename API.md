@@ -3,10 +3,26 @@
 ## AccountRescue
 
 * [AccountRescue](#module_AccountRescue)
+    * [~regenerateSecret(remote, local, password)](#module_AccountRescue..regenerateSecret) ⇒ <code>Promise.&lt;String&gt;</code>
     * [~renderRescue(options, [macros])](#module_AccountRescue..renderRescue) ⇒ <code>Promise.&lt;AccountRescueInfo&gt;</code>
     * [~RenderRescueOptions](#module_AccountRescue..RenderRescueOptions) : <code>Object</code>
     * [~RenderRescueTemplateProperties](#module_AccountRescue..RenderRescueTemplateProperties) : <code>Object</code>
     * [~AccountRescueInfo](#module_AccountRescue..AccountRescueInfo) : <code>Object</code>
+
+<a name="module_AccountRescue..regenerateSecret"></a>
+
+### AccountRescue~regenerateSecret(remote, local, password) ⇒ <code>Promise.&lt;String&gt;</code>
+Regenerate secret value from rescue components
+
+**Kind**: inner method of [<code>AccountRescue</code>](#module_AccountRescue)  
+**Returns**: <code>Promise.&lt;String&gt;</code> - A promise that resolves with the original
+ secret value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| remote | <code>String</code> | The remote payload |
+| local | <code>String</code> | The local payload, taken from the QR |
+| password | <code>String</code> | The local password, taken from the rescue document |
 
 <a name="module_AccountRescue..renderRescue"></a>
 
