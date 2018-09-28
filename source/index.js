@@ -31,7 +31,9 @@ function regenerateSecret(remote, local, password) {
 
 /**
  * @typedef {Object} RenderRescueTemplateProperties
- * @property {String} system - The name of the system
+ * @property {String=} system - The name of the system
+ * @property {String=} url - The URL for the user to browse to in the event
+ *  they want to recover their account
  */
 
 /**
