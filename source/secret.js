@@ -6,6 +6,11 @@ const PASS_LEN_MIN = 18;
 const SPLIT_CHUNK_LOCAL = 2;
 const SPLIT_CHUNK_REMOTE = 4;
 
+function decryptPayload(encryptedPayload, password) {
+    return createSession()
+        .decrypt(encryptedPayload, password);
+}
+
 function generateSecretPayload(accountSecret) {
     const lenDiff = Math.floor(Math.random() * (PASS_LEN_MAX - PASS_LEN_MIN));
     const passLen = PASS_LEN_MIN + lenDiff;
@@ -29,7 +34,7 @@ function generateSecretPayload(accountSecret) {
         );
 }
 
-function splitEncryptedPayload(str) {
+function unzipEncryptedPayload(str) {
     const minLength = SPLIT_CHUNK_LOCAL + SPLIT_CHUNK_REMOTE;
     if (!str || str.length < minLength) {
         throw new Error(`Payload too short: Must be at least ${minLength} characters`);
@@ -51,7 +56,22 @@ function splitEncryptedPayload(str) {
     };
 }
 
+function zipEncryptedPayload(remote, local) {
+    let output = "",
+        remoteWorking = remote,
+        localWorking = local;
+    while (remoteWorking.length > 0 || localWorking.length > 0) {
+        output = `${output}${remoteWorking.substring(0, SPLIT_CHUNK_REMOTE)}`;
+        remoteWorking = remoteWorking.substring(SPLIT_CHUNK_REMOTE);
+        output = `${output}${localWorking.substring(0, SPLIT_CHUNK_LOCAL)}`;
+        localWorking = localWorking.substring(SPLIT_CHUNK_LOCAL);
+    }
+    return output;
+}
+
 module.exports = {
+    decryptPayload,
     generateSecretPayload,
-    splitEncryptedPayload
+    unzipEncryptedPayload,
+    zipEncryptedPayload
 };

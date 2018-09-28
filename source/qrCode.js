@@ -7,6 +7,18 @@ const QR_CODE_OPTIONS = {
     }
 };
 
+function decodeQRCodePayload(qrCodeString) {
+    const data = JSON.parse(qrCodeString);
+    if (!data.type || data.type !== "account-rescue") {
+        throw new Error(`Invalid rescue payload: Unrecognised type: ${data.type}`);
+    }
+    return {
+        id: data.id,
+        payload: data.payload,
+        password: data.password
+    };
+}
+
 function generateQRCodeForPayload({ id, payload, password } = {}) {
     const data = JSON.stringify({
         id,
@@ -25,5 +37,6 @@ function generateQRCodeForPayload({ id, payload, password } = {}) {
 }
 
 module.exports = {
+    decodeQRCodePayload,
     generateQRCodeForPayload
 };

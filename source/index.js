@@ -1,6 +1,11 @@
-const { generateSecretPayload, splitEncryptedPayload } = require("./secret.js");
+const { decryptPayload, generateSecretPayload, unzipEncryptedPayload, zipEncryptedPayload } = require("./secret.js");
 const { generateHTMLDocument, generatePDFDocument } = require("./document.js");
-const { generateQRCodeForPayload } = require("./qrCode.js");
+const { decodeQRCodePayload, generateQRCodeForPayload } = require("./qrCode.js");
+
+function regenerateSecret(remote, local, password) {
+    const encryptedPayload = zipEncryptedPayload(remote, local);
+    return decryptPayload(encryptedPayload, password);
+}
 
 function renderRescue(
     { accountIdentifier, accountSecret, output = "html" } = {},
@@ -12,7 +17,7 @@ function renderRescue(
     };
     return generateSecretPayload(accountSecret)
         .then(({ encryptedPayload, password }) => {
-            const { local, remote } = splitEncryptedPayload(encryptedPayload);
+            const { local, remote } = unzipEncryptedPayload(encryptedPayload);
             out.remote = remote;
             return generateQRCodeForPayload({
                 id: accountIdentifier,
@@ -48,5 +53,7 @@ function renderRescue(
 // });
 
 module.exports = {
+    decodeQRCodePayload,
+    regenerateSecret,
     renderRescue
 };
