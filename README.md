@@ -52,6 +52,37 @@ This library creates 2 primary deliverables - A **document** which is to be give
 
 When this library is charged to create rescue information, the output should be separated immediately, with the remote secret being stored in a database and the rescue document being given to the user in the form of a download.
 
+The document provided allows the user to enter the details in some web or app interface, for recovery, or simply scan the QR code with an app in your suite. An optional `url` parameter can be specified at creation time which is provided in the document - this could be used to help the user navigate to the correct recovery page (it could also include their account ID).
+
 ### Performing recovery
 In the case that the rescue information needs to be used, the user will provide several data points:
 
+ * Upon scanning their QR code or entering their details manually:
+   * Account identifier
+   * Passcode
+   * Encrypted secret
+
+Use the account identifier to retrieve the _remote_ portion of the payload (this should be done server-side and should **not** be exposed to the user) and call the following method:
+
+```javascript
+const { regenerateSecret } = require("account-rescue");
+
+const secret = await regenerateSecret(fetchedRemote, receivedLocal, receivedPassword);
+// Secret will be what you stored using `renderRescue` earlier
+```
+
+If the user scanned their QR code, the process can be expanded to:
+
+```javascript
+const { decodeQRCodePayload, regenerateSecret } = require("account-rescue");
+
+const {
+    id,
+    payload: local,
+    password
+} = decodeQRCodePayload(scannedQRDataString);
+
+// fetch remote for `id`
+
+const secret = await regenerateSecret(remote, local, password);
+```

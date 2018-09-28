@@ -57,7 +57,8 @@ Render a rescue document
 
 | Name | Type | Description |
 | --- | --- | --- |
-| system | <code>String</code> | The name of the system |
+| [system] | <code>String</code> | The name of the system |
+| [url] | <code>String</code> | The URL for the user to browse to in the event  they want to recover their account |
 
 <a name="module_AccountRescue..AccountRescueInfo"></a>
 
