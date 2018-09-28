@@ -4,6 +4,7 @@
   "description": "Account reset/rescue framework for NodeJS",
   "main": "source/index.js",
   "scripts": {
+    "docs": "jsdoc2md 'source/**/*.js' > API.md",
     "test": "npm run test:specs",
     "test:specs": "nyc mocha -r test/index.js 'test/specs/**/*.spec.js'"
   },
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "jsdoc-to-markdown": "^4.0.1",
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
     "sinon": "^6.3.4"
