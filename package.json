@@ -4,7 +4,8 @@
   "description": "Account reset/rescue framework for NodeJS",
   "main": "source/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:specs",
+    "test:specs": "nyc mocha -r test/index.js 'test/specs/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,11 @@
     "pug": "^2.0.3",
     "qrcode": "^1.2.2",
     "secure-random-string": "^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "sinon": "^6.3.4"
   }
 }

@@ -4,3 +4,4 @@
 node_modules
 test.html
 test.pdf
+.nyc_output
