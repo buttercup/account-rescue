@@ -48,7 +48,7 @@ function regenerateSecret(remote, local, password) {
  */
 function renderRescue(
     { accountIdentifier, accountSecret, output = "html" } = {},
-    { system = "Example Inc." } = {}
+    { system = "Example Inc.", url } = {}
 ) {
     const out = {
         remote: null,
@@ -68,7 +68,8 @@ function renderRescue(
                     password,
                     payload: local,
                     qrImageCode,
-                    system
+                    system,
+                    url
                 })
             );
         })
@@ -87,7 +88,7 @@ function renderRescue(
 //     accountIdentifier: "id123",
 //     accountSecret: "mySecretPassword",
 //     output: "pdf"
-// }).then(out => {
+// }, { url: "https://myserver.com/accounts/help/rescue.aspx?uid=123" }).then(out => {
 //     require("fs").writeFileSync(require("path").resolve(__dirname, "../test.pdf"), out.data);
 // });
 

@@ -10,7 +10,7 @@ const PDF_OPTIONS = {
 };
 const TEMPLATE = path.resolve(__dirname, "../resources/template.pug");
 
-function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCode, system } = {}) {
+function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCode, system, url } = {}) {
     return readTemplate()
         .then(pugCode => {
             const pugEx = pug.compile(pugCode);
@@ -19,9 +19,9 @@ function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCod
                 password,
                 payload,
                 qrImageCode,
-                system
+                system,
+                url
             });
-            // fs.writeFileSync(path.resolve(__dirname, "../test.html"), html);
             return html;
         });
 }

@@ -48,14 +48,18 @@ html(lang="en")
                 border: 2px solid #000;
                 border-radius: 4px;
                 border-collapse: collapse;
+                table-layout: fixed;
             }
             table.details td {
                 text-align: left;
                 border: 1px solid #111;
                 padding: 5px 2px;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
             }
             td.heading {
                 width: 140px;
+                min-width: 140px;
                 background-color: #111;
                 color: #fff;
                 font-weight: bold;
@@ -63,6 +67,9 @@ html(lang="en")
             td.mono {
                 font-family: "PT Mono", monospace;
                 word-break: break-all;
+            }
+            td.value {
+                width: 290px;
             }
             img.qrcode {
                 width: 260px;
@@ -87,12 +94,17 @@ html(lang="en")
                 tbody
                     tr
                         td.heading Account
-                        td.mono #{accountIdentifier}
+                        td.value.mono #{accountIdentifier}
                     tr
                         td.heading Rescue Data
-                        td.mono #{payload}
+                        td.value.mono #{payload}
                     tr
                         td.heading Passcode
-                        td.mono #{password}
+                        td.value.mono #{password}
+                    if url
+                        tr
+                            td.heading Recovery URL
+                            td.value
+                                a(href=url) #{url}
             p You can also use the following QR-code to start the rescue process from supported applications:
             img.qrcode(src=qrImageCode)
