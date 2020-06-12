@@ -3,19 +3,20 @@ const fs = require("fs");
 const pug = require("pug");
 const pdf = require("html-pdf");
 
-const PDF_OPTIONS = {
-    format: "A4",
-    orientation: "portrait",
-    renderDelay: 2000
-};
+// const PDF_OPTIONS = {
+//     format: "A4",
+//     orientation: "portrait",
+//     renderDelay: 2000
+// };
 const TEMPLATE = path.resolve(__dirname, "../resources/template.pug");
 
-function generateHTMLDocument({ accountIdentifier, password, payload, qrImageCode, system, url } = {}) {
+function generateHTMLDocument({ accountIdentifier, colour, password, payload, qrImageCode, system, url } = {}) {
     return readTemplate()
         .then(pugCode => {
             const pugEx = pug.compile(pugCode);
             const html = pugEx({
                 accountIdentifier,
+                colour,
                 password,
                 payload,
                 qrImageCode,

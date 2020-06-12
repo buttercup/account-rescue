@@ -50,7 +50,7 @@ function regenerateSecret(remote, local, password) {
  */
 function renderRescue(
     { accountIdentifier, accountSecret, output = "html" } = {},
-    { system = "Example Inc.", url } = {}
+    { colour = "#f46242", system = "Example Inc.", url } = {}
 ) {
     const out = {
         remote: null,
@@ -67,6 +67,7 @@ function renderRescue(
             }).then(qrImageCode =>
                 generateHTMLDocument({
                     accountIdentifier,
+                    colour,
                     password,
                     payload: local,
                     qrImageCode,
@@ -90,7 +91,11 @@ function renderRescue(
 //     accountIdentifier: "id123",
 //     accountSecret: "mySecretPassword",
 //     output: "pdf"
-// }, { url: "https://myserver.com/accounts/help/rescue.aspx?uid=123" }).then(out => {
+// }, {
+//     colour: "rgb(0, 183, 172)",
+//     url: "https://myserver.com/accounts/help/rescue.aspx?uid=123",
+//     system: "My Buttercup"
+// }).then(out => {
 //     require("fs").writeFileSync(require("path").resolve(__dirname, "../test.pdf"), out.data);
 // });
 
