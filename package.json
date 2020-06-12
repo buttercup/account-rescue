@@ -27,16 +27,16 @@
   "homepage": "https://github.com/buttercup/account-rescue#readme",
   "dependencies": {
     "html-pdf": "^2.2.0",
-    "iocane": "^1.0.1",
-    "pug": "^2.0.3",
-    "qrcode": "^1.2.2",
-    "secure-random-string": "^1.1.0"
+    "iocane": "^4.1.0",
+    "qrcode": "^1.4.4",
+    "secure-random-string": "^1.1.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "jsdoc-to-markdown": "^4.0.1",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
-    "sinon": "^6.3.4"
+    "jsdoc-to-markdown": "^6.0.1",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
+    "pug": "^3.0.0",
+    "sinon": "^9.0.2"
   }
 }
