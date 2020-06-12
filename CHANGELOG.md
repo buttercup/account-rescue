@@ -1,5 +1,11 @@
 # Account Rescue - Changelog
 
+## v0.3.0
+_2020-06-13_
+
+ * Dependency updates
+ * `colour` option support
+
 ## v0.2.0
 _2018-09-28_
 
